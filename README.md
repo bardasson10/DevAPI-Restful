@@ -41,7 +41,7 @@ Nesta pasta ficam os arquivos de configuração e recursos estáticos do sistema
    ```bash
    git clone https://github.com/seu-usuario/cinemafilme.git
 
-   ## Estrutura de Diretórios
+
 
 ## 📂 Estrutura do Projeto
 A seguir está a estrutura de diretórios utilizada no projeto:
