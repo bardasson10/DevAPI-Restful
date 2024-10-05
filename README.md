@@ -6,7 +6,33 @@ Este é um projeto de exemplo utilizando o **Spring Boot** com o padrão **MVC**
 
 A seguir está a estrutura de diretórios utilizada no projeto:
 
-src/ └── main/ ├── java/ │ └── br/ │ └── com/ │ └── cinemafilme/ │ ├── configs/ # Configurações gerais do sistema (ex: Swagger) │ │ └── SwaggerConfig.java │ ├── controllers/ # Controladores (ex: MovieController) │ │ └── MovieController.java │ ├── entities/ # Entidades de banco de dados (ex: MovieEntity) │ │ └── MovieEntity.java │ ├── repositories/ # Repositórios do banco de dados (ex: MovieRepository) │ │ └── MovieRepository.java │ ├── services/ # Lógica de negócios e serviços (ex: MovieService) │ │ └── MovieService.java │ ├── dtos/ # Data Transfer Objects (ex: MovieDTO) │ │ └── MovieDTO.java │ ├── system/ # Classes principais e de configuração global │ │ └── CinemaFilmeApplication.java │ └── util/ # Utilitários e helpers do sistema (ex: StringUtil.java) └── resources/ ├── static/ # Arquivos estáticos (CSS, JS, imagens, etc.) ├── templates/ # Templates Thymeleaf (HTML) └── application.properties # Configurações de propriedades do Spring
+.
+└── src/
+    └── main/
+        ├── java/
+        │   └── br/
+        │       └── com/
+        │           └── cinemafilme/
+        │               ├── configs/               # Configurações gerais do sistema (ex: Swagger)
+        │               │   └── SwaggerConfig.java
+        │               ├── controllers/           # Controladores (ex: MovieController)
+        │               │   └── MovieController.java
+        │               ├── entities/              # Entidades de banco de dados (ex: MovieEntity)
+        │               │   └── MovieEntity.java
+        │               ├── repositories/          # Repositórios do banco de dados (ex: MovieRepository)
+        │               │   └── MovieRepository.java
+        │               ├── services/              # Lógica de negócios e serviços (ex: MovieService)
+        │               │   └── MovieService.java
+        │               ├── dtos/                  # Data Transfer Objects (ex: MovieDTO)
+        │               │   └── MovieDTO.java
+        │               ├── system/                # Classes principais e de configuração global
+        │               │   └── CinemaFilmeApplication.java
+        │               └── util/                  # Utilitários e helpers do sistema (ex: StringUtil.java)
+        └── resources/
+            ├── static/                            # Arquivos estáticos (CSS, JS, imagens, etc.)
+            ├── templates/                         # Templates Thymeleaf (HTML)
+            └── application.properties             # Configurações de propriedades do Spring
+
 
 
 ### Explicação dos Pacotes
