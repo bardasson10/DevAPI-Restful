@@ -2,39 +2,6 @@
 
 Este é um projeto de exemplo utilizando o **Spring Boot** com o padrão **MVC** (Model-View-Controller). O objetivo deste projeto é demonstrar uma estrutura organizada e eficiente para um aplicativo de gerenciamento de filmes.
 
-## Estrutura de Diretórios
-
-A seguir está a estrutura de diretórios utilizada no projeto:
-
-.
-└── src/
-    └── main/
-        ├── java/
-        │   └── br/
-        │       └── com/
-        │           └── cinemafilme/
-        │               ├── configs/               # Configurações gerais do sistema (ex: Swagger)
-        │               │   └── SwaggerConfig.java
-        │               ├── controllers/           # Controladores (ex: MovieController)
-        │               │   └── MovieController.java
-        │               ├── entities/              # Entidades de banco de dados (ex: MovieEntity)
-        │               │   └── MovieEntity.java
-        │               ├── repositories/          # Repositórios do banco de dados (ex: MovieRepository)
-        │               │   └── MovieRepository.java
-        │               ├── services/              # Lógica de negócios e serviços (ex: MovieService)
-        │               │   └── MovieService.java
-        │               ├── dtos/                  # Data Transfer Objects (ex: MovieDTO)
-        │               │   └── MovieDTO.java
-        │               ├── system/                # Classes principais e de configuração global
-        │               │   └── CinemaFilmeApplication.java
-        │               └── util/                  # Utilitários e helpers do sistema (ex: StringUtil.java)
-        └── resources/
-            ├── static/                            # Arquivos estáticos (CSS, JS, imagens, etc.)
-            ├── templates/                         # Templates Thymeleaf (HTML)
-            └── application.properties             # Configurações de propriedades do Spring
-
-
-
 ### Explicação dos Pacotes
 
 #### `configs/`
@@ -73,3 +40,37 @@ Nesta pasta ficam os arquivos de configuração e recursos estáticos do sistema
 1. Clone o repositório:
    ```bash
    git clone https://github.com/seu-usuario/cinemafilme.git
+
+   ## Estrutura de Diretórios
+
+## 📂 Estrutura do Projeto
+A seguir está a estrutura de diretórios utilizada no projeto:
+
+```bash
+.
+└── src/
+    └── main/
+        ├── java/
+        │   └── br/
+        │       └── com/
+        │           └── cinemafilme/
+        │               ├── configs/               # Configurações gerais do sistema (ex: Swagger)
+        │               │   └── SwaggerConfig.java
+        │               ├── controllers/           # Controladores (ex: MovieController)
+        │               │   └── MovieController.java
+        │               ├── entities/              # Entidades de banco de dados (ex: MovieEntity)
+        │               │   └── MovieEntity.java
+        │               ├── repositories/          # Repositórios do banco de dados (ex: MovieRepository)
+        │               │   └── MovieRepository.java
+        │               ├── services/              # Lógica de negócios e serviços (ex: MovieService)
+        │               │   └── MovieService.java
+        │               ├── dtos/                  # Data Transfer Objects (ex: MovieDTO)
+        │               │   └── MovieDTO.java
+        │               ├── system/                # Classes principais e de configuração global
+        │               │   └── CinemaFilmeApplication.java
+        │               └── util/                  # Utilitários e helpers do sistema (ex: StringUtil.java)
+        └── resources/
+            ├── static/                            # Arquivos estáticos (CSS, JS, imagens, etc.)
+            ├── templates/                         # Templates Thymeleaf (HTML)
+            └── application.properties             # Configurações de propriedades do Spring
+
