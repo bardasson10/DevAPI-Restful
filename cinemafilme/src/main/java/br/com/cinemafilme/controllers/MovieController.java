@@ -26,6 +26,11 @@ public class MovieController {
         emailService.emailWriter2();
         return "Email enviado com sucesso para o Dg!";
     }
+    @GetMapping("/email2")
+    public String testeEmail3(){
+        emailService.emailWriter3();
+        return "Email enviado com sucesso para o Dg!";
+    }
 
 
 
