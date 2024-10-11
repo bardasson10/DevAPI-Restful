@@ -31,11 +31,11 @@ public class MovieTheatres {
     }
 
     public String getName() {
-        return name;
+        return name_theatre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String name_theatre) {
+        this.name_theatre = name_theatre;
     }
 
     public String getAddress() {
