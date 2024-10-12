@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/veiculo")
@@ -22,15 +23,6 @@ public class VeiculoController {
         }else{
             String retorno = HttpStatus.OK + "Veículos listados com sucesso!";
             return VeiculoService.getVeiculosLista();
-        }
-    }
-
-    @PostMapping("/adicionar")
-    public String adicionarVeiculo(Integer id, String marca, String modelo) {
-        if (id.equals(VeiculoLista.getId()) && marca.equals(VeiculoLista.getMarca()) && modelo.equals(VeiculoLista.getModelo())) {
-            return HttpStatus.UNAUTHORIZED + "Veículo ja existe!";
-        } else {
-            return ("Veículo adicionado com sucesso!");
         }
     }
 
@@ -53,5 +45,17 @@ public class VeiculoController {
             return "Deletado com suceso!";
         }
     }
+    @PostMapping("/adicionar")
+    public String adicionarVeiculo(Integer id, String marca, String modelo) {
+        for (VeiculoLista veiculo : VeiculoService.getVeiculosLista()) {
+            if (Objects.equals(veiculo.getId(), id)) {
+                return HttpStatus.UNAUTHORIZED + "Veículo ja existe!";
+            } else {
+                return ("Veículo adicionado com sucesso!");
+            }
+        }
+        return VeiculoService.adicionarVeiculo(id, marca, modelo);
+    }
+
 
 }
