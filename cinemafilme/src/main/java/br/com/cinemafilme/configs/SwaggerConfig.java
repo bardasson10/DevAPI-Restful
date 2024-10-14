@@ -15,7 +15,7 @@ import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
-@SecurityScheme(name="bearer Auth", type=SecuritySchemeType.HTTP, scheme="bearer", bearerFormat="JWT")
+@SecurityScheme(name="Bearer Auth", type=SecuritySchemeType.HTTP, bearerFormat="JWT", scheme="bearer")
 public class SwaggerConfig {
 
     @Value("${prop.swagger.enabled}")
