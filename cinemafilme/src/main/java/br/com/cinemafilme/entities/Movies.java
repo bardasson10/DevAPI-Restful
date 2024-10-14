@@ -2,7 +2,7 @@ package br.com.cinemafilme.entities;
 
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+
 
 @Entity
 @Table(name = "movies")

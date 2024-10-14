@@ -2,6 +2,7 @@ package br.com.cinemafilme.security.entities;
 
 
 
+import br.com.cinemafilme.security.enums.RoleEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

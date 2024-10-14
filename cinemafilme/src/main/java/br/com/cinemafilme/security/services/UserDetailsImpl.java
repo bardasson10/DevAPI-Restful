@@ -51,10 +51,8 @@ public class UserDetailsImpl implements UserDetails {
         //stream().map()-> para percorrer a lista de roles
         //SimpleGrantedAuthority()-> armazenar o GrantedAuthority como uma String e associa ao usuário
         List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> {
-                    return new SimpleGrantedAuthority(role.getName()
-                            .name());
-                }).collect(Collectors.toList());
+                .map(role -> new SimpleGrantedAuthority(role.getName()
+                        .name())).collect(Collectors.toList());
 
         //retorna o objeto construído a partir da lista acima
         return new UserDetailsImpl(user.getId(), user.getUsername(), user.getEmail(), user.getPassword(), authorities);
