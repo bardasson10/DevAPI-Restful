@@ -2,6 +2,8 @@ package br.com.cinemafilme.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "movie_theatres")
 public class MovieTheatres {
@@ -21,6 +23,13 @@ public class MovieTheatres {
     private String phone;
     @Column(name = "movie_theatres_tx_email")
     private String email;
+    @ManyToMany
+    @JoinTable(
+            name = "movie_theatres_movies",
+            joinColumns = @JoinColumn(name = "movie_theatres_cd_cinema"),
+            inverseJoinColumns = @JoinColumn(name = "movies_cd_filme")
+    )
+    private List<Movies> movies;
 
     public Integer getId() {
         return id;

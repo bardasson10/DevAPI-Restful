@@ -3,6 +3,8 @@ package br.com.cinemafilme.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "movies")
@@ -21,6 +23,9 @@ public class Movies {
     private Integer year;
     @Column(name = "movies_tx_duracao")
     private Integer duration;
+    @ManyToMany(mappedBy = "movies")
+    private List<MovieTheatres> movieTheatres;
+
 
     public Integer getId() {
         return id;
