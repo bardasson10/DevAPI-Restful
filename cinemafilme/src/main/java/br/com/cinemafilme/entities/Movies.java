@@ -23,9 +23,10 @@ public class Movies {
     private Integer year;
     @Column(name = "movies_tx_duracao")
     private Integer duration;
+    @Column(name = "movies_tx_session")
+    private String session;
     @ManyToMany(mappedBy = "movies")
     private List<MovieTheatres> movieTheatres;
-
 
     public Integer getId() {
         return id;
@@ -73,5 +74,21 @@ public class Movies {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
+    }
+
+    public List<MovieTheatres> getMovieTheatres() {
+        return movieTheatres;
+    }
+
+    public void setMovieTheatres(List<MovieTheatres> movieTheatres) {
+        this.movieTheatres = movieTheatres;
     }
 }
