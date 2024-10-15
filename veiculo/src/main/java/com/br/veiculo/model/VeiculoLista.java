@@ -1,6 +1,8 @@
 package com.br.veiculo.model;
 
 
+import nonapi.io.github.classgraph.json.Id;
+
 public class VeiculoLista {
 
     private Integer id;
