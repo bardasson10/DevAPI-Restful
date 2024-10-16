@@ -23,8 +23,9 @@ public class Address {
     @Column(name = "address_tx_state")
     private String state;
 
-    @OneToMany(mappedBy = "movieTheatreaddres")
-    private List<MovieTheatres> movieTheatres;
+    @ManyToOne
+    @JoinColumn(name = "movie_theatres_cd_cinema")
+    private MovieTheatres movieTheatresAddress;
 
     public Integer getId() {
         return id;
@@ -82,11 +83,11 @@ public class Address {
         this.state = state;
     }
 
-    public List<MovieTheatres> getMovieTheatres() {
-        return movieTheatres;
+    public MovieTheatres getMovieTheatresAddress() {
+        return movieTheatresAddress;
     }
 
-    public void setMovieTheatres(List<MovieTheatres> movieTheatres) {
-        this.movieTheatres = movieTheatres;
+    public void setMovieTheatresAddress(MovieTheatres movieTheatresAddress) {
+        this.movieTheatresAddress = movieTheatresAddress;
     }
 }

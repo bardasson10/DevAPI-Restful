@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name = "movie_theatres")
 public class MovieTheatres {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_theatres_cd_cinema")
@@ -27,13 +28,12 @@ public class MovieTheatres {
     )
     private Set<Movies> movies = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "address_cd_endereco")
-    private Address movieTheatreaddres;
+    @OneToMany(mappedBy = "movieTheatresAddress")
+    private List<Address> addressesMovieTheatres;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "movies_theatre_fk_site_theatres")
+    private SiteTheatres siteTheatres;
 
     public Integer getId() {
         return id;
@@ -75,19 +75,19 @@ public class MovieTheatres {
         this.movies = movies;
     }
 
-    public Address getMovieTheatreaddres() {
-        return movieTheatreaddres;
+    public List<Address> getAddressesMovieTheatres() {
+        return addressesMovieTheatres;
     }
 
-    public void setMovieTheatreaddres(Address movieTheatreaddres) {
-        this.movieTheatreaddres = movieTheatreaddres;
+    public void setAddresses(List<Address> addressesMovieTheatres) {
+        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
-    public User getUser() {
-        return user;
+    public SiteTheatres getSiteTheatres() {
+        return siteTheatres;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setSiteTheatres(SiteTheatres siteTheatres) {
+        this.siteTheatres = siteTheatres;
     }
 }
