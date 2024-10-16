@@ -1,4 +1,4 @@
-package br.com.cinemafilme.services;
+package br.com.cinemafilme.security.services;
 
 import org.springframework.stereotype.Service;
 

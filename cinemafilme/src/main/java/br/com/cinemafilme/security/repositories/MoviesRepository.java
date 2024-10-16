@@ -1,8 +1,8 @@
-package br.com.cinemafilme.repositories;
+package br.com.cinemafilme.security.repositories;
 
-import br.com.cinemafilme.entities.Movies;
+
+import br.com.cinemafilme.security.entities.Movies;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository("movies")

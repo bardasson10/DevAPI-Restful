@@ -1,6 +1,5 @@
-package br.com.cinemafilme.services;
+package br.com.cinemafilme.security.services;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;

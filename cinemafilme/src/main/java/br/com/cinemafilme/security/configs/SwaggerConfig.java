@@ -1,4 +1,4 @@
-package br.com.cinemafilme.configs;
+package br.com.cinemafilme.security.configs;
 
 import java.util.List;
 

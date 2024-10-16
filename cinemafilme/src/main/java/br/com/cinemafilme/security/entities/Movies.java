@@ -1,4 +1,4 @@
-package br.com.cinemafilme.entities;
+package br.com.cinemafilme.security.entities;
 
 
 import jakarta.persistence.*;
@@ -27,6 +27,7 @@ public class Movies {
     private String session;
     @ManyToMany(mappedBy = "movies")
     private List<MovieTheatres> movieTheatres;
+
 
     public Integer getId() {
         return id;
