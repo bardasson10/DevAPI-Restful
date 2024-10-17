@@ -1,5 +1,6 @@
 package br.com.cinemafilme.security.entities;
 
+import jakarta.mail.Session;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -31,9 +32,18 @@ public class MovieTheatres {
     @OneToMany(mappedBy = "movieTheatresAddress")
     private List<Address> addressesMovieTheatres;
 
-    @ManyToOne
-    @JoinColumn(name = "movies_theatre_fk_site_theatres")
-    private SiteTheatres siteTheatres;
+    @OneToMany(mappedBy = "movieTheatre")
+    private List<SessionFilm> sessionFilms;
+
+    public MovieTheatres(Integer id, String name_theatre, String phone, String email, Set<Movies> movies, List<Address> addressesMovieTheatres, List<SessionFilm> sessionFilms) {
+        this.id = id;
+        this.name_theatre = name_theatre;
+        this.phone = phone;
+        this.email = email;
+        this.movies = movies;
+        this.addressesMovieTheatres = addressesMovieTheatres;
+        this.sessionFilms = sessionFilms;
+    }
 
     public Integer getId() {
         return id;
@@ -83,11 +93,15 @@ public class MovieTheatres {
         this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
-    public SiteTheatres getSiteTheatres() {
-        return siteTheatres;
+    public void setAddressesMovieTheatres(List<Address> addressesMovieTheatres) {
+        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
-    public void setSiteTheatres(SiteTheatres siteTheatres) {
-        this.siteTheatres = siteTheatres;
+    public List<SessionFilm> getSessionFilms() {
+        return sessionFilms;
+    }
+
+    public void setSessionFilms(List<SessionFilm> sessionFilms) {
+        this.sessionFilms = sessionFilms;
     }
 }

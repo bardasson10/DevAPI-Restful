@@ -1,6 +1,7 @@
 package br.com.cinemafilme.security.entities;
 
 
+import jakarta.mail.Session;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -26,7 +27,19 @@ public class Movies {
     @ManyToMany(mappedBy = "movies")
     private List<MovieTheatres> movieTheatres;
 
+    @OneToMany(mappedBy = "movie")
+    private List<SessionFilm> sessionFilms;
 
+    public Movies(Integer id, String title, String director, String genre, Integer year, Integer duration, List<MovieTheatres> movieTheatres, List<SessionFilm> sessionFilms) {
+        this.id = id;
+        this.title = title;
+        this.director = director;
+        this.genre = genre;
+        this.year = year;
+        this.duration = duration;
+        this.movieTheatres = movieTheatres;
+        this.sessionFilms = sessionFilms;
+    }
     public Integer getId() {
         return id;
     }
@@ -81,5 +94,13 @@ public class Movies {
 
     public void setMovieTheatres(List<MovieTheatres> movieTheatres) {
         this.movieTheatres = movieTheatres;
+    }
+
+    public List<SessionFilm> getSessionFilms() {
+        return sessionFilms;
+    }
+
+    public void setSessionFilms(List<SessionFilm> sessionFilms) {
+        this.sessionFilms = sessionFilms;
     }
 }
