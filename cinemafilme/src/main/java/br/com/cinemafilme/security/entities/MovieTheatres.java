@@ -35,14 +35,13 @@ public class MovieTheatres {
     @OneToMany(mappedBy = "movieTheatre")
     private List<SessionFilm> sessionFilms;
 
-    public MovieTheatres(Integer id, String name_theatre, String phone, String email, Set<Movies> movies, List<Address> addressesMovieTheatres, List<SessionFilm> sessionFilms) {
-        this.id = id;
+    public MovieTheatres( String name_theatre, String phone, String email, Set<Movies> movies, List<SessionFilm> sessionFilms, List<Address> addressesMovieTheatres) {
         this.name_theatre = name_theatre;
         this.phone = phone;
         this.email = email;
         this.movies = movies;
-        this.addressesMovieTheatres = addressesMovieTheatres;
         this.sessionFilms = sessionFilms;
+        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
     public Integer getId() {

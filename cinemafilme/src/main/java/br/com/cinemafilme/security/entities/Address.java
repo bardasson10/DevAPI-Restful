@@ -11,21 +11,31 @@ public class Address {
     @Column(name = "address_cd_endereco")
     private Integer id;
     @Column(name = "address_int_cep")
-    private Integer cep;
+    private String cep;
     @Column(name = "address_tx_name")
-    private String name;
+    private String logradouro;
     @Column(name = "address_tx_neighborhood")
-    private String neighborhood;
+    private String bairro;
     @Column(name = "address_tx_city")
-    private String city;
+    private String localidade;
     @Column(name = "address_tx_uf")
     private String uf;
     @Column(name = "address_tx_state")
-    private String state;
+    private String estado;
 
     @ManyToOne
     @JoinColumn(name = "movie_theatres_cd_cinema")
     private MovieTheatres movieTheatresAddress;
+
+    public Address( String cep, String logradouro, String bairro, String localidade, String uf, String estado, MovieTheatres movieTheatresAddress) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
+        this.estado = estado;
+        this.movieTheatresAddress = movieTheatresAddress;
+    }
 
     public Integer getId() {
         return id;
@@ -35,36 +45,36 @@ public class Address {
         this.id = id;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
-    public String getName() {
-        return name;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
     public String getUf() {
@@ -75,12 +85,12 @@ public class Address {
         this.uf = uf;
     }
 
-    public String getState() {
-        return state;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public MovieTheatres getMovieTheatresAddress() {
