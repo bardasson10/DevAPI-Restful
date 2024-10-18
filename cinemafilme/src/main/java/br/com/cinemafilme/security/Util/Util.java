@@ -6,8 +6,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class Util {
-    public AddressResponseDTO searchAddress(String cep, Integer numero) {
+    public AddressResponseDTO searchAddress(String cep) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("https://viacep.com.br/ws/{cep}/json/", AddressResponseDTO.class, cep, numero);
+        return restTemplate.getForObject("https://viacep.com.br/ws/{cep}/json/", AddressResponseDTO.class, cep);
     }
 }

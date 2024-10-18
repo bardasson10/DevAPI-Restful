@@ -29,19 +29,21 @@ public class MovieTheatres {
     )
     private Set<Movies> movies = new HashSet<>();
 
-    @OneToMany(mappedBy = "movieTheatresAddress")
-    private List<Address> addressesMovieTheatres;
+    @ManyToOne
+    @JoinColumn(name = "address_cd_endereco")
+    private Address movieTheatresAddress;
 
     @OneToMany(mappedBy = "movieTheatre")
     private List<SessionFilm> sessionFilms;
 
-    public MovieTheatres( String name_theatre, String phone, String email, Set<Movies> movies, List<SessionFilm> sessionFilms, List<Address> addressesMovieTheatres) {
+    public MovieTheatres(Integer id, String name_theatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress, List<SessionFilm> sessionFilms) {
+        this.id = id;
         this.name_theatre = name_theatre;
         this.phone = phone;
         this.email = email;
         this.movies = movies;
+        this.movieTheatresAddress = movieTheatresAddress;
         this.sessionFilms = sessionFilms;
-        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
     public Integer getId() {
@@ -84,16 +86,12 @@ public class MovieTheatres {
         this.movies = movies;
     }
 
-    public List<Address> getAddressesMovieTheatres() {
-        return addressesMovieTheatres;
+    public Address getMovieTheatresAddress() {
+        return movieTheatresAddress;
     }
 
-    public void setAddresses(List<Address> addressesMovieTheatres) {
-        this.addressesMovieTheatres = addressesMovieTheatres;
-    }
-
-    public void setAddressesMovieTheatres(List<Address> addressesMovieTheatres) {
-        this.addressesMovieTheatres = addressesMovieTheatres;
+    public void setMovieTheatresAddress(Address movieTheatresAddress) {
+        this.movieTheatresAddress = movieTheatresAddress;
     }
 
     public List<SessionFilm> getSessionFilms() {

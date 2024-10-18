@@ -26,11 +26,11 @@ public class Address {
     @Column(name = "address_tx_state")
     private String estado;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_theatres_cd_cinema")
-    private MovieTheatres movieTheatresAddress;
+    @OneToMany(mappedBy = "movieTheatresAddress")
+    private List<MovieTheatres> addressesMovieTheatres;
 
-    public Address( String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado) {
+    public Address(Integer id, String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado, List<MovieTheatres> addressesMovieTheatres) {
+        this.id = id;
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -38,6 +38,7 @@ public class Address {
         this.localidade = localidade;
         this.uf = uf;
         this.estado = estado;
+        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
     public Address() {
@@ -108,11 +109,13 @@ public class Address {
         this.estado = estado;
     }
 
-    public MovieTheatres getMovieTheatresAddress() {
-        return movieTheatresAddress;
+    public List<MovieTheatres> getAddressesMovieTheatres() {
+        return addressesMovieTheatres;
     }
 
-    public void setMovieTheatresAddress(MovieTheatres movieTheatresAddress) {
-        this.movieTheatresAddress = movieTheatresAddress;
+    public void setAddressesMovieTheatres(List<MovieTheatres> addressesMovieTheatres) {
+        this.addressesMovieTheatres = addressesMovieTheatres;
     }
+
+
 }

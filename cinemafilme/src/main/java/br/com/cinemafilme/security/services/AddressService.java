@@ -32,7 +32,7 @@ public class AddressService {
     }*/
 
     public AddressResponseDTO searchAddress(AddressRequestDTO addressRequestDTO) {
-        AddressResponseDTO viaCepRequest = util.searchAddress(addressRequestDTO.getCep(), addressRequestDTO.getNumero());
+        AddressResponseDTO viaCepRequest = util.searchAddress(addressRequestDTO.getCep());
 
         AddressResponseDTO address = new AddressResponseDTO();
         address.setCep(viaCepRequest.getCep());
