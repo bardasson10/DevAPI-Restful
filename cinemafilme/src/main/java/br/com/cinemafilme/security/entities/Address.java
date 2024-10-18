@@ -8,12 +8,15 @@ import java.util.List;
 @Table(name = "address")
 public class Address {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_cd_endereco")
     private Integer id;
     @Column(name = "address_int_cep")
     private String cep;
     @Column(name = "address_tx_name")
     private String logradouro;
+    @Column(name = "address_tx_number")
+    private Integer numero;
     @Column(name = "address_tx_neighborhood")
     private String bairro;
     @Column(name = "address_tx_city")
@@ -27,14 +30,18 @@ public class Address {
     @JoinColumn(name = "movie_theatres_cd_cinema")
     private MovieTheatres movieTheatresAddress;
 
-    public Address( String cep, String logradouro, String bairro, String localidade, String uf, String estado, MovieTheatres movieTheatresAddress) {
+    public Address( String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado) {
         this.cep = cep;
         this.logradouro = logradouro;
+        this.numero = numero;
         this.bairro = bairro;
         this.localidade = localidade;
         this.uf = uf;
         this.estado = estado;
-        this.movieTheatresAddress = movieTheatresAddress;
+    }
+
+    public Address() {
+
     }
 
     public Integer getId() {
@@ -59,6 +66,14 @@ public class Address {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
     public String getBairro() {

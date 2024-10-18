@@ -1,25 +1,31 @@
 package br.com.cinemafilme.security.controllers;
 
 import br.com.cinemafilme.security.Util.Util;
+import br.com.cinemafilme.security.dtos.AddressRequestDTO;
+import br.com.cinemafilme.security.dtos.AddressResponseDTO;
 import br.com.cinemafilme.security.entities.Address;
+import br.com.cinemafilme.security.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/address")
 public class AddressController {
     @Autowired
-    Util util;
+    AddressService addressService;
 
-    @PostMapping("/teste")
-    public ResponseEntity<?> searchAddress(@RequestParam String cep) {
-        Address address = util.searchAddress(cep);
-        return new ResponseEntity<>(address, HttpStatus.OK);
+/*
+    @PostMapping("/buscar")
+    public ResponseEntity<AddressResponseDTO> searchAddress(@RequestParam String cep, @RequestParam Integer numero) {
+        AddressResponseDTO response = addressService.searchAddress(cep, numero);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }*/
+
+    @PostMapping("/save-endereco")
+    public AddressResponseDTO saveAddress(@RequestBody AddressRequestDTO addressRequestDTO) {
+        return addressService.searchAddress(addressRequestDTO);
     }
 
 }
