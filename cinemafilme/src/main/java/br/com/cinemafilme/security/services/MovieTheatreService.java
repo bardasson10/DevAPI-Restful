@@ -25,7 +25,6 @@ public class MovieTheatreService {
         AddressRequestDTO addressRequestDTO = new AddressRequestDTO();
         addressRequestDTO.setCep(movieTheatreResquestDTO.getAddress().getCep());
         addressRequestDTO.setNumero(movieTheatreResquestDTO.getAddress().getNumero());
-        // Adicione outros campos conforme necessário...
 
         // Salvar o endereço e obter o objeto AddressResponseDTO
         AddressResponseDTO addressResponseDTO = addressService.saveAddress(addressRequestDTO);
