@@ -1,10 +1,17 @@
 package br.com.cinemafilme.security.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class AddressRequestDTO {
     private String cep;
+
+    @JsonProperty("number")
     private Integer numero;
 
     public AddressRequestDTO() {
+    }
+
+    public AddressRequestDTO(String cep, Integer number) {
     }
 
     public String getCep() {

@@ -1,10 +1,7 @@
 package br.com.cinemafilme.security.dtos;
 
 import br.com.cinemafilme.security.entities.Address;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
 
 public class AddressResponseDTO {
 
@@ -15,6 +12,8 @@ public class AddressResponseDTO {
         private String localidade;
         private String uf;
         private String estado;
+        private Integer id;
+
 
         public AddressResponseDTO(String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado) {
             this.cep = cep;
@@ -87,6 +86,14 @@ public class AddressResponseDTO {
         this.numero = numero;
     }
 
+    public Integer getId() { // Getter for ID
+        return id;
+    }
+
+    public void setId(Integer id) { // Setter for ID
+        this.id = id;
+    }
+
     public Address toAddress(AddressResponseDTO addressResponseDTO) {
             Address address = new Address();
             address.setCep(addressResponseDTO.getCep());
@@ -98,4 +105,7 @@ public class AddressResponseDTO {
             address.setEstado(addressResponseDTO.getEstado());
         return address;
     }
+
+
+
 }

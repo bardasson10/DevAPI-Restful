@@ -1,6 +1,6 @@
 package br.com.cinemafilme.security.entities;
 
-import jakarta.mail.Session;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -52,6 +52,10 @@ public class MovieTheatres {
         this.movies = movies;
         this.movieTheatresAddress = movieTheatresAddress;
         this.sessionFilms = sessionFilms;
+    }
+
+    public MovieTheatres() {
+
     }
 
     public Integer getId() {
@@ -109,4 +113,6 @@ public class MovieTheatres {
     public void setSessionFilms(List<SessionFilm> sessionFilms) {
         this.sessionFilms = sessionFilms;
     }
+
+
 }

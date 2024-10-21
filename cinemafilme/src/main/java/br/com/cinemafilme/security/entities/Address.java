@@ -29,8 +29,7 @@ public class Address {
     @OneToMany(mappedBy = "movieTheatresAddress")
     private List<MovieTheatres> addressesMovieTheatres;
 
-    public Address(Integer id, String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado, List<MovieTheatres> addressesMovieTheatres) {
-        this.id = id;
+    public Address( String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -38,12 +37,12 @@ public class Address {
         this.localidade = localidade;
         this.uf = uf;
         this.estado = estado;
-        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
     public Address() {
 
     }
+
 
     public Integer getId() {
         return id;
