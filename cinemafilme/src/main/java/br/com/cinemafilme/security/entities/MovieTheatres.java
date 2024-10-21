@@ -2,6 +2,9 @@ package br.com.cinemafilme.security.entities;
 
 import jakarta.mail.Session;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,11 +18,17 @@ public class MovieTheatres {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_theatres_cd_cinema")
     private Integer id;
+
     @Column(name = "movie_theatres_tx_nome")
+    @NotBlank
+    @Size(max = 30)
     private String name_theatre;
+
     @Column(name = "movie_theatres_tx_telefone")
+    @Size(min = 9, max = 15)
     private String phone;
     @Column(name = "movie_theatres_tx_email")
+    @Email
     private String email;
     @ManyToMany
     @JoinTable(
@@ -29,15 +38,14 @@ public class MovieTheatres {
     )
     private Set<Movies> movies = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_cd_endereco")
     private Address movieTheatresAddress;
 
     @OneToMany(mappedBy = "movieTheatre")
     private List<SessionFilm> sessionFilms;
 
-    public MovieTheatres(Integer id, String name_theatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress, List<SessionFilm> sessionFilms) {
-        this.id = id;
+    public MovieTheatres(String name_theatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress, List<SessionFilm> sessionFilms) {
         this.name_theatre = name_theatre;
         this.phone = phone;
         this.email = email;

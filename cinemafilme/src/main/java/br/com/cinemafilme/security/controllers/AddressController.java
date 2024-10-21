@@ -25,7 +25,7 @@ public class AddressController {
 
     @PostMapping("/save-endereco")
     public AddressResponseDTO saveAddress(@RequestBody AddressRequestDTO addressRequestDTO) {
-        return addressService.searchAddress(addressRequestDTO);
+        return addressService.saveAddress(addressRequestDTO);
     }
 
 }

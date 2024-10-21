@@ -3,6 +3,10 @@ package br.com.cinemafilme.security.entities;
 
 import jakarta.mail.Session;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -14,24 +18,38 @@ public class Movies {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movies_cd_filme")
     private Integer id;
+
     @Column(name = "movies_tx_titulo")
+    @NotBlank
+    @Size(max = 100)
     private String title;
+
     @Column(name = "movies_tx_diretor")
+    @NotBlank
+    @Size(max = 50)
     private String director;
+
     @Column(name = "movies_tx_genero")
+    @NotBlank
+    @Size(max = 30)
     private String genre;
+
     @Column(name = "movies_int_ano")
+    @Min(1888)
     private Integer year;
+
     @Column(name = "movies_tx_duracao")
+    @Min(1) // Minimum duration of 1 minute
+    @Max(600)
     private Integer duration;
+
     @ManyToMany(mappedBy = "movies")
     private List<MovieTheatres> movieTheatres;
 
     @OneToMany(mappedBy = "movie")
     private List<SessionFilm> sessionFilms;
 
-    public Movies(Integer id, String title, String director, String genre, Integer year, Integer duration, List<MovieTheatres> movieTheatres, List<SessionFilm> sessionFilms) {
-        this.id = id;
+    public Movies( String title, String director, String genre, Integer year, Integer duration, List<MovieTheatres> movieTheatres, List<SessionFilm> sessionFilms) {
         this.title = title;
         this.director = director;
         this.genre = genre;

@@ -3,7 +3,12 @@ package br.com.cinemafilme.security.entities;
 import br.com.cinemafilme.security.enums.PurchaseStatusEnum;
 import jakarta.mail.Session;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.NumberFormat;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,27 +21,35 @@ public class Purchase {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "session_id")
+    @NotNull
     private SessionFilm sessionFilm;
 
     @Column(name = "ticket_quantity")
+    @NotNull
+    @Min(1)
     private Integer ticketQuantity;
 
     @Column(name = "total_price")
+    @NotNull
+    @Min(0)
     private double totalPrice;
 
     @Column(name = "purchase_date")
+    @NotNull
+    @FutureOrPresent
     private LocalDateTime purchaseDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private PurchaseStatusEnum status; // Ex: "PENDING", "CONFIRMED", "CANCELLED"
+    @NotNull
+    private PurchaseStatusEnum status;
 
-    public Purchase(Integer id, User user, SessionFilm sessionFilm, Integer ticketQuantity, double totalPrice, LocalDateTime purchaseDate, PurchaseStatusEnum status) {
-        this.id = id;
+    public Purchase( User user, SessionFilm sessionFilm, Integer ticketQuantity, double totalPrice, LocalDateTime purchaseDate, PurchaseStatusEnum status) {
         this.user = user;
         this.sessionFilm = sessionFilm;
         this.ticketQuantity = ticketQuantity;

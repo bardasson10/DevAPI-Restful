@@ -1,6 +1,8 @@
 package br.com.cinemafilme.security.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,21 +18,25 @@ public class SessionFilm {
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
+    @NotNull(message = "Movie cannot be null")
     private Movies movie;
 
     @ManyToOne
     @JoinColumn(name = "movie_theatre_id")
+    @NotNull(message = "Movie theatre cannot be null")
     private MovieTheatres movieTheatre;
 
     @Column(name = "session_time")
+    @NotNull(message = "Session time cannot be null")
+    @Future(message = "Session time must be in the future")
     private LocalDateTime sessionTime;
 
     @OneToMany(mappedBy = "sessionFilm")
     private List<Purchase> purchases;
 
 
-    public SessionFilm(Integer id, Movies movie, MovieTheatres movieTheatre, LocalDateTime sessionTime) {
-        this.id = id;
+
+    public SessionFilm(Movies movie, MovieTheatres movieTheatre, LocalDateTime sessionTime) {
         this.movie = movie;
         this.movieTheatre = movieTheatre;
         this.sessionTime = sessionTime;

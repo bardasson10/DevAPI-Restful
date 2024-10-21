@@ -15,23 +15,9 @@ public class AddressService {
     Util util;
     @Autowired
     AddressRepository addressRepository;
-    /*
-    public AddressResponseDTO searchAddress(String cep, Integer numero) {
 
-        AddressResponseDTO viacep = util.searchAddress(cep, numero);
 
-        AddressResponseDTO address = new AddressResponseDTO();
-        address.setCep(viacep.getCep());
-        address.setLogradouro(viacep.getLogradouro());
-        address.setNumero(numero);
-        address.setBairro(viacep.getBairro());
-        address.setLocalidade(viacep.getLocalidade());
-        address.setUf(viacep.getUf());
-        address.setEstado(viacep.getEstado());
-        return address;
-    }*/
-
-    public AddressResponseDTO searchAddress(AddressRequestDTO addressRequestDTO) {
+    public AddressResponseDTO saveAddress(AddressRequestDTO addressRequestDTO) {
         AddressResponseDTO viaCepRequest = util.searchAddress(addressRequestDTO.getCep());
 
         AddressResponseDTO address = new AddressResponseDTO();
