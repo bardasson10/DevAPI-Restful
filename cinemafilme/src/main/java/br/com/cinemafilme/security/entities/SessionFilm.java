@@ -17,7 +17,7 @@ public class SessionFilm {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "movies_cd_id")
     @NotNull(message = "Movie cannot be null")
     private Movies movie;
 

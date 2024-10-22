@@ -1,8 +1,9 @@
 package br.com.cinemafilme.security.dtos;
 
 import br.com.cinemafilme.security.entities.Address;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL) // Omitir campos nulos na serialização
 public class AddressResponseDTO {
 
         private String cep;
@@ -27,6 +28,19 @@ public class AddressResponseDTO {
 
     public AddressResponseDTO() {
 
+    }
+
+    public AddressResponseDTO(Address movieTheatresAddress) {
+        if (movieTheatresAddress != null) {
+            this.cep = movieTheatresAddress.getCep();
+            this.logradouro = movieTheatresAddress.getLogradouro();
+            this.numero = movieTheatresAddress.getNumero();
+            this.bairro = movieTheatresAddress.getBairro();
+            this.localidade = movieTheatresAddress.getLocalidade();
+            this.uf = movieTheatresAddress.getUf();
+            this.estado = movieTheatresAddress.getEstado();
+            this.id = movieTheatresAddress.getId(); // Assuming Address has an ID field
+        }
     }
 
 

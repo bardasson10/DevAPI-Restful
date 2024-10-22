@@ -9,7 +9,7 @@ import java.util.List;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_cd_endereco")
+    @Column(name = "address_cd_id")
     private Integer id;
     @Column(name = "address_int_cep")
     private String cep;

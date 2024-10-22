@@ -16,13 +16,13 @@ public class MovieTheatres {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_theatres_cd_cinema")
+    @Column(name = "movie_theatres_cd_id")
     private Integer id;
 
     @Column(name = "movie_theatres_tx_nome")
     @NotBlank
     @Size(max = 30)
-    private String name_theatre;
+    private String nameTheatre;
 
     @Column(name = "movie_theatres_tx_telefone")
     @Size(min = 9, max = 15)
@@ -33,20 +33,20 @@ public class MovieTheatres {
     @ManyToMany
     @JoinTable(
             name = "movie_theatres_movies",
-            joinColumns = @JoinColumn(name = "movie_theatres_cd_cinema"),
-            inverseJoinColumns = @JoinColumn(name = "movies_cd_filme")
+            joinColumns = @JoinColumn(name = "movie_theatres_cd_id"),
+            inverseJoinColumns = @JoinColumn(name = "movies_cd_id")
     )
     private Set<Movies> movies = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_cd_endereco")
+    @JoinColumn(name = "address_cd_id")
     private Address movieTheatresAddress;
 
     @OneToMany(mappedBy = "movieTheatre")
     private List<SessionFilm> sessionFilms;
 
-    public MovieTheatres(String name_theatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress, List<SessionFilm> sessionFilms) {
-        this.name_theatre = name_theatre;
+    public MovieTheatres(String nameTheatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress, List<SessionFilm> sessionFilms) {
+        this.nameTheatre = nameTheatre;
         this.phone = phone;
         this.email = email;
         this.movies = movies;
@@ -67,11 +67,11 @@ public class MovieTheatres {
     }
 
     public String getName_theatre() {
-        return name_theatre;
+        return nameTheatre;
     }
 
-    public void setName_theatre(String name_theatre) {
-        this.name_theatre = name_theatre;
+    public void setName_theatre(String nameTheatre) {
+        this.nameTheatre = nameTheatre;
     }
 
     public String getPhone() {

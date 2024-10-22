@@ -29,4 +29,5 @@ public class AddressRequestDTO {
     public void setNumero(Integer numero) {
         this.numero = numero;
     }
+
 }

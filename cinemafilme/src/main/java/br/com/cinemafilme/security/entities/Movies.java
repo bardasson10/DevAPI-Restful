@@ -16,7 +16,7 @@ import java.util.List;
 public class Movies {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movies_cd_filme")
+    @Column(name = "movies_cd_id")
     private Integer id;
 
     @Column(name = "movies_tx_titulo")

@@ -31,12 +31,12 @@ public class AddressService {
         address.setUf(viaCepRequest.getUf());
         address.setEstado(viaCepRequest.getEstado());
 
-        // Save the address only once
-        Address convertAddress = address.toAddress(address);
-        Address savedAddress = addressRepository.save(convertAddress); // Save to get the generated ID
-        address.setId(savedAddress.getId()); // Get the generated ID and set it in the response
 
-        return address; // Return the saved address with ID
+        Address convertAddress = address.toAddress(address);
+        Address savedAddress = addressRepository.save(convertAddress);
+        address.setId(savedAddress.getId());
+
+        return address;
 
     }
 

@@ -2,13 +2,14 @@ package br.com.cinemafilme.security.controllers;
 
 
 import br.com.cinemafilme.security.dtos.MovieTheatreResponseDTO;
-import br.com.cinemafilme.security.dtos.MovieTheatreResquestDTO;
+import br.com.cinemafilme.security.dtos.MovieTheatreRequestDTO;
 import br.com.cinemafilme.security.services.MovieTheatreService;
-import br.com.cinemafilme.security.services.AddressService; // Assegure-se de que isso esteja importado
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cinemas")
@@ -18,26 +19,45 @@ public class MovieTheatreController {
     private MovieTheatreService movieTheatreService;
 
 
-
     @GetMapping("/lista")
-    public String listMoviesTheatres() {
-        return "Lista de cinemas"; // Considere retornar uma lista real
+    public ResponseEntity<List<MovieTheatreResponseDTO>> listMoviesTheatres() {
+        List<MovieTheatreResponseDTO> movieTheatres = movieTheatreService.findAll();
+        if (movieTheatres.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(movieTheatres);
+        }
     }
 
     @PutMapping("/atualizar")
-    public String adjustMoviesTheatres() {
-        return "Cinemas atualizados"; // Implementar a lógica para atualizar cinemas
+    public ResponseEntity<String> adjustMoviesTheatres(@RequestParam  Integer id, @RequestBody MovieTheatreRequestDTO movieTheatreRequestDTO) {
+        MovieTheatreResponseDTO updatedMovieTheatre = movieTheatreService.updateMovieTheatre(id, movieTheatreRequestDTO);
+
+        if (updatedMovieTheatre != null) {
+            return ResponseEntity.status(HttpStatus.OK).body("Cinema atualizado com sucesso");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cinema não encontrado");
+        }
     }
 
+
     @DeleteMapping("/deletar")
-    public String deleteMoviesTheatres() {
-        return "Cinemas deletados"; // Implementar a lógica para deletar cinemas
+    public ResponseEntity<String> deleteMoviesTheatres(Integer id) {
+        if (movieTheatreService.existsById(id)) { // Verifica se o cinema existe
+            movieTheatreService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Cinema deletado");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cinema não encontrado");
+        }
     }
 
     @PostMapping("/cinemas/cadastrar")
-    public ResponseEntity<MovieTheatreResponseDTO> registerMovieTheatre(@RequestBody MovieTheatreResquestDTO movieTheatreResquestDTO) {
-        MovieTheatreResponseDTO response = movieTheatreService.saveMovieTheatre(movieTheatreResquestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<MovieTheatreResponseDTO> registerMovieTheatre(@RequestBody MovieTheatreRequestDTO movieTheatreRequestDTO) {
+        if(movieTheatreService.existsByINameTheatre(movieTheatreRequestDTO.getName())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }else {
+            return ResponseEntity.status(HttpStatus.CREATED).body(movieTheatreService.saveMovieTheatre(movieTheatreRequestDTO));
+        }
     }
 }
 

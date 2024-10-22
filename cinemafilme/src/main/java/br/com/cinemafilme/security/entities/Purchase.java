@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_id")
+    @Column(name = "purchase_cd_id")
     private Integer id;
 
     @ManyToOne
@@ -29,17 +29,17 @@ public class Purchase {
     @NotNull
     private SessionFilm sessionFilm;
 
-    @Column(name = "ticket_quantity")
+    @Column(name = "purchase_nm_ticket_quantity")
     @NotNull
     @Min(1)
     private Integer ticketQuantity;
 
-    @Column(name = "total_price")
+    @Column(name = "purchase_nm_total_price")
     @NotNull
     @Min(0)
     private double totalPrice;
 
-    @Column(name = "purchase_date")
+    @Column(name = "purchase_dt_date")
     @NotNull
     @FutureOrPresent
     private LocalDateTime purchaseDate;

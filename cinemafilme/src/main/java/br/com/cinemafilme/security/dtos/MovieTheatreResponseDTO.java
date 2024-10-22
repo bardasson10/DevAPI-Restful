@@ -1,14 +1,15 @@
 package br.com.cinemafilme.security.dtos;
 
-import br.com.cinemafilme.security.entities.Address;
+
+import br.com.cinemafilme.security.entities.MovieTheatres;
 
 public class MovieTheatreResponseDTO {
     private String name;
     private String phone;
     private String email;
-    private AddressResponseDTO address; // Address response DTO
+    private AddressResponseDTO address; // Usando AddressResponseDTO para encapsular a resposta de endereço
 
-    // Constructor with all fields
+    // Construtor com parâmetros
     public MovieTheatreResponseDTO(String name, String phone, String email, AddressResponseDTO address) {
         this.name = name;
         this.phone = phone;
@@ -16,11 +17,23 @@ public class MovieTheatreResponseDTO {
         this.address = address;
     }
 
-    // Default constructor
+    // Construtor sem parâmetros
     public MovieTheatreResponseDTO() {
     }
 
-    // Getters and Setters
+    // Construtor que aceita a entidade MovieTheatres
+    public MovieTheatreResponseDTO(MovieTheatres movieTheatre) {
+        this.name = movieTheatre.getName_theatre();
+        this.phone = movieTheatre.getPhone();
+        this.email = movieTheatre.getEmail();
+
+        // Convertendo Address para AddressResponseDTO
+        if (movieTheatre.getMovieTheatresAddress() != null) {
+            this.address = new AddressResponseDTO(movieTheatre.getMovieTheatresAddress());
+        }
+    }
+
+    // Getters e Setters
     public String getName() {
         return name;
     }

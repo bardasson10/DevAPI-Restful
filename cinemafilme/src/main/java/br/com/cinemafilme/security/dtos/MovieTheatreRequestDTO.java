@@ -2,17 +2,17 @@ package br.com.cinemafilme.security.dtos;
 
 
 
-public class MovieTheatreResquestDTO {
+public class MovieTheatreRequestDTO {
     private String name;
     private String phone;
     private String email;
     private AddressRequestDTO address;
 
 
-    public MovieTheatreResquestDTO() {
+    public MovieTheatreRequestDTO() {
     }
 
-    public MovieTheatreResquestDTO(String name, String phone, String email, AddressRequestDTO address) {
+    public MovieTheatreRequestDTO(String name, String phone, String email, AddressRequestDTO address) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,7 +49,6 @@ public class MovieTheatreResquestDTO {
     public void setAddress(AddressRequestDTO address) {
         this.address = address;
     }
-
 
 
 }
