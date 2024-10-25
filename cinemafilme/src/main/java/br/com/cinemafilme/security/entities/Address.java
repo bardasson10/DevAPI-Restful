@@ -26,8 +26,6 @@ public class Address {
     @Column(name = "address_tx_state")
     private String estado;
 
-    @OneToMany(mappedBy = "movieTheatresAddress")
-    private List<MovieTheatres> addressesMovieTheatres;
 
     public Address( String cep, String logradouro, Integer numero, String bairro, String localidade, String uf, String estado) {
         this.cep = cep;
@@ -106,14 +104,6 @@ public class Address {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public List<MovieTheatres> getAddressesMovieTheatres() {
-        return addressesMovieTheatres;
-    }
-
-    public void setAddressesMovieTheatres(List<MovieTheatres> addressesMovieTheatres) {
-        this.addressesMovieTheatres = addressesMovieTheatres;
     }
 
 

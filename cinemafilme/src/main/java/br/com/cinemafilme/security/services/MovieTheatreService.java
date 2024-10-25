@@ -136,4 +136,8 @@ public class MovieTheatreService {
         }
         return null;
     }
+
+    public MovieTheatres findById(Integer idCinema) {
+        return moviesTheatresRepository.findById(idCinema).orElse(null);
+    }
 }

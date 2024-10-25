@@ -8,7 +8,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -39,24 +41,23 @@ public class Movies {
     private Integer year;
 
     @Column(name = "movies_tx_duracao")
-    @Min(1) // Minimum duration of 1 minute
+    @Min(60) // Minimum duration of 1 minute
     @Max(600)
     private Integer duration;
 
+    //Aqui e necessario o mappedBy para indicar que o relacionamento e bidirecional e salvar na tabela auxiliar
     @ManyToMany(mappedBy = "movies")
-    private List<MovieTheatres> movieTheatres;
+    private Set<MovieTheatres> movieTheatres = new HashSet<>();
 
-    @OneToMany(mappedBy = "movie")
-    private List<SessionFilm> sessionFilms;
-
-    public Movies( String title, String director, String genre, Integer year, Integer duration, List<MovieTheatres> movieTheatres, List<SessionFilm> sessionFilms) {
+    public Movies( String title, String director, String genre, Integer year, Integer duration) {
         this.title = title;
         this.director = director;
         this.genre = genre;
         this.year = year;
         this.duration = duration;
-        this.movieTheatres = movieTheatres;
-        this.sessionFilms = sessionFilms;
+    }
+
+    public Movies() {
     }
     public Integer getId() {
         return id;
@@ -106,19 +107,12 @@ public class Movies {
         this.duration = duration;
     }
 
-    public List<MovieTheatres> getMovieTheatres() {
+    public Set<MovieTheatres> getMovieTheatres() {
         return movieTheatres;
     }
 
-    public void setMovieTheatres(List<MovieTheatres> movieTheatres) {
+    public void setMovieTheatres(Set<MovieTheatres> movieTheatres) {
         this.movieTheatres = movieTheatres;
     }
 
-    public List<SessionFilm> getSessionFilms() {
-        return sessionFilms;
-    }
-
-    public void setSessionFilms(List<SessionFilm> sessionFilms) {
-        this.sessionFilms = sessionFilms;
-    }
 }

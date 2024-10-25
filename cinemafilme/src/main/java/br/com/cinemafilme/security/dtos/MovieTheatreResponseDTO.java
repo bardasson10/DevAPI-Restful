@@ -33,6 +33,10 @@ public class MovieTheatreResponseDTO {
         }
     }
 
+    public MovieTheatreResponseDTO(Integer id, String nameTheatre, String phone, String email, AddressResponseDTO addressResponseDTO) {
+    }
+
+
     // Getters e Setters
     public String getName() {
         return name;

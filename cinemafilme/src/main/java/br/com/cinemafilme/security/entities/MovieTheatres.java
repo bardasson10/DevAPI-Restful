@@ -38,7 +38,7 @@ public class MovieTheatres {
     )
     private Set<Movies> movies = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_cd_id")
     private Address movieTheatresAddress;
 

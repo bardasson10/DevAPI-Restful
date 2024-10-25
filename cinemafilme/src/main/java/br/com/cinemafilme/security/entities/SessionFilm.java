@@ -31,9 +31,6 @@ public class SessionFilm {
     @Future(message = "Session time must be in the future")
     private LocalDateTime sessionTime;
 
-    @OneToMany(mappedBy = "sessionFilm")
-    private List<Purchase> purchases;
-
 
 
     public SessionFilm(Movies movie, MovieTheatres movieTheatre, LocalDateTime sessionTime) {
@@ -74,11 +71,4 @@ public class SessionFilm {
         this.sessionTime = sessionTime;
     }
 
-    public List<Purchase> getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(List<Purchase> purchases) {
-        this.purchases = purchases;
-    }
 }

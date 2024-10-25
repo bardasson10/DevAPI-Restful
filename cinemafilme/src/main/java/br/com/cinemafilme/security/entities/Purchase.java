@@ -1,14 +1,10 @@
 package br.com.cinemafilme.security.entities;
 
 import br.com.cinemafilme.security.enums.PurchaseStatusEnum;
-import jakarta.mail.Session;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.format.annotation.NumberFormat;
-
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 @Entity
