@@ -12,7 +12,7 @@ public class MovieReponseDTO {
     String genre;
     Integer year;
     Integer duration;
-    MovieReponseDTO movieTheatreResponseDTO;
+    MovieTheatreResponseDTO movieTheatreResponseDTO;
 
     public MovieReponseDTO(Integer id, Integer movieTheatreId, String title, String director, String genre, Integer year, Integer duration) {
         this.id = id;
@@ -33,16 +33,16 @@ public class MovieReponseDTO {
         this.duration = duration;
     }
 
-    public MovieReponseDTO(Integer id, Integer movieTheatreId, String title, String director, String genre, Integer year, Integer duration, MovieReponseDTO movieTheatreResponseDTO) {
+    public MovieReponseDTO(Integer id, String title, String director, String genre, Integer year, Integer duration, MovieTheatreResponseDTO movieTheatre) {
         this.id = id;
-        this.movieTheatreId = movieTheatreId;
         this.title = title;
         this.director = director;
         this.genre = genre;
         this.year = year;
         this.duration = duration;
-        this.movieTheatreResponseDTO = movieTheatreResponseDTO;
+        this.movieTheatreResponseDTO = movieTheatre;
     }
+
 
     public MovieReponseDTO() {
     }
@@ -107,11 +107,11 @@ public class MovieReponseDTO {
         this.duration = duration;
     }
     
-    public MovieReponseDTO getMovieTheatre() {
+    public MovieTheatreResponseDTO getMovieTheatreResponseDTO() {
         return movieTheatreResponseDTO;
     }
-    
-    public void setMovieTheatre(MovieReponseDTO movieTheatre) {
-        this.movieTheatreResponseDTO= movieTheatre;
+
+    public void setMovieTheatreResponseDTO(MovieTheatreResponseDTO movieTheatreResponseDTO) {
+        this.movieTheatreResponseDTO = movieTheatreResponseDTO;
     }
 }

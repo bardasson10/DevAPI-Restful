@@ -44,7 +44,8 @@ public class WebSecurityConfig {
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/cinemafilme/**", "/auth/**", "/h2-console/**", "/roles/**", "/test/all/**",
-                                "/swagger-ui/**", "/v3/api-docs/**", "/actuator/**",  "/movies/**", "/cinemas/**", "/address/**")
+                                "/swagger-ui/**", "/v3/api-docs/**", "/actuator/**",  "/movies/**", "/cinemas/**", "/address/**",
+                                "/sessionfilm/**")
                         .permitAll()
                         .requestMatchers("/test/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/test/admin/**").hasRole("ADMIN")

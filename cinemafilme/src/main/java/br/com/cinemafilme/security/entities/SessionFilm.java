@@ -39,6 +39,13 @@ public class SessionFilm {
         this.sessionTime = sessionTime;
     }
 
+    public SessionFilm(LocalDateTime sessionTime) {
+        this.sessionTime = sessionTime;
+    }
+
+    public SessionFilm() {
+    }
+
     public Integer getId() {
         return id;
     }

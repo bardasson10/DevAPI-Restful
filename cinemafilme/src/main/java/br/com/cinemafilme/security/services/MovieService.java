@@ -113,17 +113,14 @@ public class MovieService {
     public List<MovieReponseDTO> findAll() {
         List<Movies> movies = moviesRepository.findAll();
 
-        return movies.stream().map(movie -> {
-            MovieReponseDTO movieResponseDTO = new MovieReponseDTO(
-                    movie.getId(),
-                    movie.getTitle(),
-                    movie.getDirector(),
-                    movie.getGenre(),
-                    movie.getYear(),
-                    movie.getDuration()
-            );
-            return movieResponseDTO;
-        }).collect(Collectors.toList());
+        return movies.stream().map(movie -> new MovieReponseDTO(
+                movie.getId(),
+                movie.getTitle(),
+                movie.getDirector(),
+                movie.getGenre(),
+                movie.getYear(),
+                movie.getDuration()
+        )).toList();
     }
     //Funcao que deleta um filme todos os cinemas
     public MovieReponseDTO deleteAll(Integer id) {
@@ -230,6 +227,10 @@ public class MovieService {
         } else {
             throw new EntityNotFoundException("Filme não encontrado.");
         }
+    }
+
+    public Movies findById(Integer idMovie) {
+        return moviesRepository.findById(idMovie).orElseThrow(() -> new EntityNotFoundException("Filme não encontrado."));
     }
 }
 

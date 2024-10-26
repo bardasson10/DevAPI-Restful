@@ -1,17 +1,12 @@
 package br.com.cinemafilme.security.controllers;
-
-import br.com.cinemafilme.security.Util.Util;
 import br.com.cinemafilme.security.dtos.MovieReponseDTO;
 import br.com.cinemafilme.security.dtos.MovieRequestDTO;
-import br.com.cinemafilme.security.entities.Address;
-import br.com.cinemafilme.security.entities.MovieTheatres;
 import br.com.cinemafilme.security.services.EmailService;
 import br.com.cinemafilme.security.services.MovieService;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,41 +23,91 @@ public class MovieController {
     MovieService moviesService;
 
     @PostMapping("/save/{idCinema}")
-    public ResponseEntity<MovieReponseDTO> saveNew(@PathVariable Integer idCinema, @RequestBody MovieRequestDTO movieRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(moviesService.saveNew(idCinema, movieRequestDTO));
+    public ResponseEntity<MovieReponseDTO> saveNew(@PathVariable Integer idCinema, @RequestBody @Valid MovieRequestDTO movieRequestDTO) {
+        if (idCinema == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        MovieReponseDTO movieResponse = moviesService.saveNew(idCinema, movieRequestDTO);
+        if (movieResponse != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(movieResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PostMapping("/save/unique")
-    public ResponseEntity<MovieReponseDTO> save(@RequestBody MovieRequestDTO movieRequestDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(moviesService.save(movieRequestDTO));
+    public ResponseEntity<MovieReponseDTO> save(@RequestBody @Valid MovieRequestDTO movieRequestDTO) {
+        if (movieRequestDTO == null || movieRequestDTO.getTitle() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        MovieReponseDTO movieResponse = moviesService.save(movieRequestDTO);
+        if (movieResponse != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(movieResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PostMapping("/selectSave/{idMovie}/{idMovieTheatre}")
     public ResponseEntity<MovieReponseDTO> selectSave(@PathVariable Integer idMovie, @PathVariable Integer idMovieTheatre) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(moviesService.selectSave(idMovie, idMovieTheatre));
+        if (idMovie == null || idMovieTheatre == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        MovieReponseDTO movieResponse = moviesService.selectSave(idMovie, idMovieTheatre);
+        if (movieResponse != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(movieResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<MovieReponseDTO> update(@PathVariable Integer id, @RequestBody MovieRequestDTO movieRequestDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(moviesService.updateMovie(id, movieRequestDTO));
+    public ResponseEntity<MovieReponseDTO> update(@PathVariable Integer id, @RequestBody @Valid MovieRequestDTO movieRequestDTO) {
+        if (id == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        MovieReponseDTO movieResponse = moviesService.updateMovie(id, movieRequestDTO);
+        if (movieResponse != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(movieResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping("/deleteAll/{id}")
     public ResponseEntity<MovieReponseDTO> delete(@PathVariable Integer id) {
-        MovieReponseDTO movies  = moviesService.deleteAll(id);
-        return ResponseEntity.status(HttpStatus.OK).body(movies);
+        if (id == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        MovieReponseDTO movieResponse = moviesService.deleteAll(id);
+        if (movieResponse != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(movieResponse);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping("/selectDelete/{idMovie}/{idMovieTheatre}")
     public ResponseEntity<String> selectDelete(@PathVariable Integer idMovie, @PathVariable Integer idMovieTheatre) {
-        moviesService.selectDelete(idMovie, idMovieTheatre);
-        return ResponseEntity.status(HttpStatus.OK).body("Movie deleted successfully");
+        if (idMovie == null || idMovieTheatre == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("IDs do filme e do cinema são obrigatórios.");
+        }
+        if (idMovie != null && idMovieTheatre != null) {
+            moviesService.selectDelete(idMovie, idMovieTheatre);
+            return ResponseEntity.status(HttpStatus.OK).body("Filme deletado com sucesso.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping("/list")
     public ResponseEntity<List<MovieReponseDTO>> searchAll() {
         List<MovieReponseDTO> movies = moviesService.findAll();
-        return ResponseEntity.ok(movies);
+        if (movies == null || movies.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.ok(movies);
+        }
     }
 
 

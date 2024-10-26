@@ -42,16 +42,13 @@ public class MovieTheatres {
     @JoinColumn(name = "address_cd_id")
     private Address movieTheatresAddress;
 
-    @OneToMany(mappedBy = "movieTheatre")
-    private List<SessionFilm> sessionFilms;
 
-    public MovieTheatres(String nameTheatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress, List<SessionFilm> sessionFilms) {
+    public MovieTheatres(String nameTheatre, String phone, String email, Set<Movies> movies, Address movieTheatresAddress) {
         this.nameTheatre = nameTheatre;
         this.phone = phone;
         this.email = email;
         this.movies = movies;
         this.movieTheatresAddress = movieTheatresAddress;
-        this.sessionFilms = sessionFilms;
     }
 
     public MovieTheatres() {
@@ -105,14 +102,5 @@ public class MovieTheatres {
     public void setMovieTheatresAddress(Address movieTheatresAddress) {
         this.movieTheatresAddress = movieTheatresAddress;
     }
-
-    public List<SessionFilm> getSessionFilms() {
-        return sessionFilms;
-    }
-
-    public void setSessionFilms(List<SessionFilm> sessionFilms) {
-        this.sessionFilms = sessionFilms;
-    }
-
 
 }

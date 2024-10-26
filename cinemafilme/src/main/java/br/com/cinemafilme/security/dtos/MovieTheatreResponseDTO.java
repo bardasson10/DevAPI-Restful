@@ -4,24 +4,18 @@ package br.com.cinemafilme.security.dtos;
 import br.com.cinemafilme.security.entities.MovieTheatres;
 
 public class MovieTheatreResponseDTO {
+    private Integer id;
     private String name;
     private String phone;
     private String email;
     private AddressResponseDTO address; // Usando AddressResponseDTO para encapsular a resposta de endereço
 
-    // Construtor com parâmetros
-    public MovieTheatreResponseDTO(String name, String phone, String email, AddressResponseDTO address) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-    }
-
     // Construtor sem parâmetros
+
     public MovieTheatreResponseDTO() {
     }
-
     // Construtor que aceita a entidade MovieTheatres
+
     public MovieTheatreResponseDTO(MovieTheatres movieTheatre) {
         this.name = movieTheatre.getName_theatre();
         this.phone = movieTheatre.getPhone();
@@ -32,10 +26,23 @@ public class MovieTheatreResponseDTO {
             this.address = new AddressResponseDTO(movieTheatre.getMovieTheatresAddress());
         }
     }
-
-    public MovieTheatreResponseDTO(Integer id, String nameTheatre, String phone, String email, AddressResponseDTO addressResponseDTO) {
+    // Construtor com parâmetros
+    public MovieTheatreResponseDTO(Integer id, String name, String phone, String email, AddressResponseDTO address) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
     }
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     // Getters e Setters
     public String getName() {
