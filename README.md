@@ -110,4 +110,7 @@ A seguir está a estrutura de diretórios utilizada no projeto:
             ├── static/                            # Arquivos estáticos (CSS, JS, imagens, etc.)
             ├── templates/                         # Templates Thymeleaf (HTML)
             └── application.properties             # Configurações de propriedades do Spring
-
+```
+**Acesse o Swagger UI**:
+   - Clique no botão abaixo para acessar:
+     [![Acessar Swagger UI](https://img.shields.io/badge/Acessar%20Swagger%20UI-007BFF?style=for-the-badge&logo=swagger&logoColor=white)](http://localhost:8000/cinemafilme/swagger-ui/index.html)
