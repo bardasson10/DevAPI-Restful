@@ -26,6 +26,9 @@ public class PurchaseService {
     @Autowired
     private SessionFilmeRepository sessionFilmeRepository;
 
+    @Autowired
+    private PurchaseEmailService purchaseEmailService;
+
     public PurchaseResponseDTO savePurchase(Integer idUser, Integer idSession, PurchaseRequestDTO purchaseRequestDTO) {
         User user = userRepository.findById(idUser).orElseThrow(() -> new NoSuchElementException("User not found"));
         SessionFilm sessionFilm = sessionFilmeRepository.findById(idSession).orElseThrow(() -> new NoSuchElementException("SessionFilm not found"));
@@ -40,6 +43,16 @@ public class PurchaseService {
         double priceTotal = sessionFilm.getPrice() * purchase.getTicketQuantity();
         purchase.setTotalPrice(priceTotal);
         purchaseRepository.save(purchase);
+        //envio de email
+            purchaseEmailService.purchaseEmailSender
+            (
+            user.getEmail(),
+            sessionFilm.getMovie().getTitle(),
+            sessionFilm.getPrice(),
+            purchase.getTicketQuantity(),
+            purchase.getTotalPrice(),
+            purchase.getStatus()
+            );
         return new PurchaseResponseDTO(
                 purchase.getId(),
                 purchase.getPurchaseDate(),

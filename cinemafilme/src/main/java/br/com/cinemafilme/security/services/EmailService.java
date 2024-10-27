@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
-@Component
 public class EmailService {
+    /*
     LocalDateTime dtNow = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     DecimalFormat df = new DecimalFormat("R$ #,##0.00");
@@ -115,5 +115,5 @@ public class EmailService {
             System.out.println("Erro ao enviar e-mail" + e.getMessage());
         }
 
-    }
+    }*/
 }

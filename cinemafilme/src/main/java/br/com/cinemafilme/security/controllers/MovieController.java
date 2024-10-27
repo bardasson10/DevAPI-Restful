@@ -16,8 +16,6 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    @Autowired
-    EmailService emailService;
 
     @Autowired
     MovieService moviesService;

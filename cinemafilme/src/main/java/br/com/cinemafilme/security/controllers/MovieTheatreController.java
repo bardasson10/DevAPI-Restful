@@ -4,22 +4,23 @@ package br.com.cinemafilme.security.controllers;
 import br.com.cinemafilme.security.dtos.MovieTheatreResponseDTO;
 import br.com.cinemafilme.security.dtos.MovieTheatreRequestDTO;
 import br.com.cinemafilme.security.services.MovieTheatreService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/cinemas")
+@RequestMapping("/movietheatre")
 public class MovieTheatreController {
 
     @Autowired
     private MovieTheatreService movieTheatreService;
 
-
-    @GetMapping("/lista")
+    @GetMapping("/list")
     public ResponseEntity<List<MovieTheatreResponseDTO>> listMoviesTheatres() {
         List<MovieTheatreResponseDTO> movieTheatres = movieTheatreService.findAll();
         if (movieTheatres.isEmpty()) {
@@ -29,7 +30,7 @@ public class MovieTheatreController {
         }
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping("/update")
     public ResponseEntity<String> adjustMoviesTheatres(@RequestParam  Integer id, @RequestBody MovieTheatreRequestDTO movieTheatreRequestDTO) {
         MovieTheatreResponseDTO updatedMovieTheatre = movieTheatreService.updateMovieTheatre(id, movieTheatreRequestDTO);
 
@@ -41,7 +42,7 @@ public class MovieTheatreController {
     }
 
 
-    @DeleteMapping("/deletar")
+    @DeleteMapping("/delete")
     public ResponseEntity<String> deleteMoviesTheatres(Integer id) {
         if (movieTheatreService.existsById(id)) { // Verifica se o cinema existe
             movieTheatreService.deleteById(id);
@@ -51,7 +52,9 @@ public class MovieTheatreController {
         }
     }
 
-    @PostMapping("/cinemas/cadastrar")
+    @SecurityRequirement(name = "Bearer Auth")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/save")
     public ResponseEntity<MovieTheatreResponseDTO> registerMovieTheatre(@RequestBody MovieTheatreRequestDTO movieTheatreRequestDTO) {
         if(movieTheatreService.existsByINameTheatre(movieTheatreRequestDTO.getName())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
