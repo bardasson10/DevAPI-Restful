@@ -1,6 +1,43 @@
 # CinemaFilme Application
 
-Este é um projeto de exemplo utilizando o **Spring Boot** com o padrão **MVC** (Model-View-Controller). O objetivo deste projeto é demonstrar uma estrutura organizada e eficiente para um aplicativo de gerenciamento de filmes.
+
+Este projeto é um sistema de gestão de cinemas e sessões de filmes, desenvolvido utilizando o framework Spring Boot. Ele permite o gerenciamento de cinemas, filmes, sessões e a compra de ingressos, além de fornecer autenticação e autorização básica para os usuários.
+
+## Funcionalidades Principais
+
+- **Gerenciamento de Filmes**: Criação e armazenamento de dados de filmes, incluindo título, diretor, duração e gênero.
+- **Cadastro de Cinemas**: Administração de cinemas, com informações de contato e endereço.
+- **Sessões de Filmes**: Criação e controle de sessões, incluindo horário e preço dos ingressos.
+- **Compra de Ingressos**: Registro e controle das compras de ingressos, com status de compra.
+- **Controle de Usuários e Perfis**: Sistema de autenticação e autorização com perfis de usuários (ROLE_USER, ROLE_MODERATOR, ROLE_ADMIN).
+
+## Estrutura do Banco de Dados
+
+O banco de dados possui as seguintes tabelas principais:
+
+1. **Address**: Armazena informações de endereço como CEP, cidade, estado e número do endereço.
+2. **Movies**: Guarda informações dos filmes, incluindo título, diretor, gênero e ano de lançamento.
+3. **Roles**: Define os papéis dos usuários no sistema (e.g., ADMIN, USER).
+4. **Users**: Armazena informações dos usuários, incluindo nome de usuário, e-mail e senha.
+5. **Movie Theatres**: Registra as informações de cada cinema, associando-o a um endereço.
+6. **Sessions**: Define as sessões de exibição de cada filme, associadas a cinemas e filmes.
+7. **Purchases**: Armazena as compras feitas pelos usuários, incluindo a quantidade de ingressos e o status da compra.
+
+## Dependências Principais
+
+O projeto foi desenvolvido com as seguintes dependências principais:
+
+- **Spring Boot**: Framework para construção do backend.
+- **Spring Data JPA**: Para interação com o banco de dados.
+- **Spring Security**: Para autenticação e autorização de usuários.
+- **PostgreSQL**: Banco de dados utilizado no projeto.
+
+## Como Executar o Projeto
+
+1. Clone o repositório.
+2. Certifique-se de que o PostgreSQL esteja instalado e configurado.
+3. Atualize as configurações de conexão com o banco de dados no arquivo `application.properties`.
+4. Execute o comando abaixo para iniciar o servidor:
 
 ### Explicação dos Pacotes
 
