@@ -35,7 +35,7 @@ public class MovieTheatreService {
 
         // Criar o objeto MovieTheatres
         MovieTheatres movieTheatres = new MovieTheatres();
-        movieTheatres.setName_theatre(movieTheatreRequestDTO.getName());
+        movieTheatres.setNametheatre(movieTheatreRequestDTO.getName());
         movieTheatres.setPhone(movieTheatreRequestDTO.getPhone());
         movieTheatres.setEmail(movieTheatreRequestDTO.getEmail());
 
@@ -48,7 +48,7 @@ public class MovieTheatreService {
 
         // Converter o objeto MovieTheatres salvo para MovieTheatreResponseDTO
         MovieTheatreResponseDTO movieTheatre = new MovieTheatreResponseDTO();
-        movieTheatre.setName(savedMovieTheatre.getName_theatre());
+        movieTheatre.setName(savedMovieTheatre.getNametheatre());
         movieTheatre.setPhone(savedMovieTheatre.getPhone());
         movieTheatre.setEmail(savedMovieTheatre.getEmail());
 
@@ -74,7 +74,7 @@ public class MovieTheatreService {
 
         return movieTheatres.stream().map(movieTheatre -> {
             MovieTheatreResponseDTO movieTheatreResponseDTO = new MovieTheatreResponseDTO();
-            movieTheatreResponseDTO.setName(movieTheatre.getName_theatre());
+            movieTheatreResponseDTO.setName(movieTheatre.getNametheatre());
             movieTheatreResponseDTO.setPhone(movieTheatre.getPhone());
             movieTheatreResponseDTO.setEmail(movieTheatre.getEmail());
 
@@ -115,7 +115,7 @@ public class MovieTheatreService {
             MovieTheatres movieTheatre = optionalMovieTheatre.get();
 
             // Atualizar os campos do cinema
-            movieTheatre.setName_theatre(movieTheatreRequestDTO.getName());
+            movieTheatre.setNametheatre(movieTheatreRequestDTO.getName());
             movieTheatre.setPhone(movieTheatreRequestDTO.getPhone());
             movieTheatre.setEmail(movieTheatreRequestDTO.getEmail());
 

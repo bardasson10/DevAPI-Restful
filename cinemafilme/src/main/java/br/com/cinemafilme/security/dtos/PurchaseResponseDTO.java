@@ -1,74 +1,56 @@
-package br.com.cinemafilme.security.entities;
+package br.com.cinemafilme.security.dtos;
 
+import br.com.cinemafilme.security.entities.SessionFilm;
+import br.com.cinemafilme.security.entities.User;
 import br.com.cinemafilme.security.enums.PurchaseStatusEnum;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "purchase")
-public class Purchase {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_cd_id")
-    private Integer id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    @NotNull
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class PurchaseResponseDTO {
+    Integer idPurchase;
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "session_id")
-    @NotNull
-    private SessionFilm sessionFilm;
-
-    @Column(name = "purchase_nm_ticket_quantity")
-    @NotNull
-    @Min(1)
+    private SessionFilmResponseDTO sessionFilm;
     private Integer ticketQuantity;
-
-    @Column(name = "purchase_nm_total_price")
-    @NotNull
-    @Min(0)
     private double totalPrice;
-
-    @Column(name = "purchase_dt_date")
-    @NotNull
-    @FutureOrPresent
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime purchaseDate;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    @NotNull
     private PurchaseStatusEnum status;
 
-    public Purchase( User user, SessionFilm sessionFilm, Integer ticketQuantity, LocalDateTime purchaseDate, PurchaseStatusEnum status) {
+    public PurchaseResponseDTO(Integer idPurchase, User user, SessionFilmResponseDTO sessionFilm, Integer ticketQuantity, double totalPrice, LocalDateTime purchaseDate, PurchaseStatusEnum status) {
+        this.idPurchase = idPurchase;
         this.user = user;
         this.sessionFilm = sessionFilm;
-        this.ticketQuantity = ticketQuantity;
-        this.purchaseDate = purchaseDate;
-        this.status = status;
-    }
-
-    public Purchase(Integer ticketQuantity, double totalPrice, LocalDateTime purchaseDate, PurchaseStatusEnum status) {
         this.ticketQuantity = ticketQuantity;
         this.totalPrice = totalPrice;
         this.purchaseDate = purchaseDate;
         this.status = status;
     }
 
-    public Purchase() {
+    public PurchaseResponseDTO(){
     }
 
-    public Integer getId() {
-        return id;
+
+
+
+    public PurchaseResponseDTO(Integer id, LocalDateTime purchaseDate, Integer ticketQuantity, double totalPrice, PurchaseStatusEnum status, Integer idUser, String email, SessionFilmResponseDTO sessionFilmResponseDTO) {
+        this.idPurchase = id;
+        this.purchaseDate = purchaseDate;
+        this.ticketQuantity = ticketQuantity;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.user = new User(idUser, email);
+        this.sessionFilm = sessionFilmResponseDTO;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getIdPurchase() {
+        return idPurchase;
+    }
+
+    public void setIdPurchase(Integer idPurchase) {
+        this.idPurchase = idPurchase;
     }
 
     public User getUser() {
@@ -79,11 +61,11 @@ public class Purchase {
         this.user = user;
     }
 
-    public SessionFilm getSessionFilm() {
+    public SessionFilmResponseDTO getSessionFilm() {
         return sessionFilm;
     }
 
-    public void setSessionFilm(SessionFilm sessionFilm) {
+    public void setSessionFilm(SessionFilmResponseDTO sessionFilm) {
         this.sessionFilm = sessionFilm;
     }
 
@@ -119,3 +101,4 @@ public class Purchase {
         this.status = status;
     }
 }
+

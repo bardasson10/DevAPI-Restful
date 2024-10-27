@@ -183,7 +183,7 @@ public class MovieService {
                     movies.getDuration(),
                     new MovieTheatreResponseDTO(
                             movieTheatres.getId(),
-                            movieTheatres.getName_theatre(),
+                            movieTheatres.getNametheatre(),
                             movieTheatres.getPhone(),
                             movieTheatres.getEmail(),
                             new AddressResponseDTO(

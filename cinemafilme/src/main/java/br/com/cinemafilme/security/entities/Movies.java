@@ -57,6 +57,15 @@ public class Movies {
         this.duration = duration;
     }
 
+    public Movies( String title, String director, String genre, Integer year, Integer duration, Integer idMovieTheatre, String nameMovieTheatre) {
+        this.title = title;
+        this.director = director;
+        this.genre = genre;
+        this.year = year;
+        this.duration = duration;
+        this.movieTheatres.add(new MovieTheatres(idMovieTheatre, nameMovieTheatre));
+    }
+
     public Movies() {
     }
     public Integer getId() {

@@ -29,7 +29,8 @@ public class SessionFilmService {
         MovieTheatres movieTheatre = movieTheatreService.findById(idMovieTheatre);
 
         SessionFilm sessionFilm = new SessionFilm(
-                sessionFilmRequestDTO.getSessionTime());
+                sessionFilmRequestDTO.getSessionTime(),
+                sessionFilmRequestDTO.getPrice());
 
         sessionFilm.setMovie(movie);
         sessionFilm.setMovieTheatre(movieTheatre);
@@ -43,7 +44,8 @@ public class SessionFilmService {
                 sessionFilm.getMovie().getGenre(),
                 sessionFilm.getMovie().getYear(),
                 sessionFilm.getMovie().getDuration(),
-                sessionFilm.getMovieTheatre().getName_theatre(),
+                sessionFilm.getMovieTheatre().getId(),
+                sessionFilm.getMovieTheatre().getNametheatre(),
                 sessionFilm.getMovieTheatre().getPhone(),
                 sessionFilm.getMovieTheatre().getEmail(),
                 sessionFilm.getMovieTheatre().getMovieTheatresAddress().getCep(),
@@ -53,8 +55,8 @@ public class SessionFilmService {
                 sessionFilm.getMovieTheatre().getMovieTheatresAddress().getLocalidade(),
                 sessionFilm.getMovieTheatre().getMovieTheatresAddress().getUf(),
                 sessionFilm.getMovieTheatre().getMovieTheatresAddress().getEstado(),
-                sessionFilm.getMovieTheatre().getMovieTheatresAddress().getId(),
-                sessionFilm.getSessionTime());
+                sessionFilm.getSessionTime(),
+                sessionFilm.getPrice());
     }
 
     public List<SessionFilmResponseDTO> findAll() {
@@ -67,7 +69,8 @@ public class SessionFilmService {
                             sessionFilm.getMovie().getGenre(),
                             sessionFilm.getMovie().getYear(),
                             sessionFilm.getMovie().getDuration(),
-                            sessionFilm.getMovieTheatre().getName_theatre(),
+                            sessionFilm.getMovieTheatre().getId(),
+                            sessionFilm.getMovieTheatre().getNametheatre(),
                             sessionFilm.getMovieTheatre().getPhone(),
                             sessionFilm.getMovieTheatre().getEmail(),
                             sessionFilm.getMovieTheatre().getMovieTheatresAddress().getCep(),
@@ -77,8 +80,8 @@ public class SessionFilmService {
                             sessionFilm.getMovieTheatre().getMovieTheatresAddress().getLocalidade(),
                             sessionFilm.getMovieTheatre().getMovieTheatresAddress().getUf(),
                             sessionFilm.getMovieTheatre().getMovieTheatresAddress().getEstado(),
-                            sessionFilm.getMovieTheatre().getMovieTheatresAddress().getId(),
-                            sessionFilm.getSessionTime());
+                            sessionFilm.getSessionTime(),
+                            sessionFilm.getPrice());
                 })
                 .collect(Collectors.toList());
     }

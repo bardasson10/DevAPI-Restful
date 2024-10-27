@@ -9,7 +9,7 @@
     </parent>
     <groupId>br.com</groupId>
     <artifactId>cinemafilme</artifactId>
-    <version>4.0.5</version>
+    <version>4.1.0</version>
     <name>cinemafilme</name>
     <description>Seja bem-vindo ao Sistema Cinema Filmes</description>
     <url />

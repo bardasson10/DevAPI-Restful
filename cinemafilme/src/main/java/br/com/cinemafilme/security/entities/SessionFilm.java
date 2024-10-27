@@ -26,11 +26,13 @@ public class SessionFilm {
     @NotNull(message = "Movie theatre cannot be null")
     private MovieTheatres movieTheatre;
 
-    @Column(name = "session_time")
+    @Column(name = "session_dt_time")
     @NotNull(message = "Session time cannot be null")
     @Future(message = "Session time must be in the future")
     private LocalDateTime sessionTime;
 
+    @Column(name = "session_nm_price")
+    private double price;
 
 
     public SessionFilm(Movies movie, MovieTheatres movieTheatre, LocalDateTime sessionTime) {
@@ -39,11 +41,19 @@ public class SessionFilm {
         this.sessionTime = sessionTime;
     }
 
-    public SessionFilm(LocalDateTime sessionTime) {
+    public SessionFilm(LocalDateTime sessionTime, double price) {
         this.sessionTime = sessionTime;
+        this.price = price;
     }
 
     public SessionFilm() {
+    }
+
+    public SessionFilm(Integer idSession, LocalDateTime sessionTime, double price, String title, String director, String genre, Integer year, Integer duration, Integer idMovieTheatre, String nameMovieTheatre) {
+        this.id = idSession;
+        this.sessionTime = sessionTime;
+        this.price = price;
+        this.movie = new Movies(title, director, genre, year, duration, idMovieTheatre, nameMovieTheatre);
     }
 
     public Integer getId() {
@@ -68,6 +78,14 @@ public class SessionFilm {
 
     public void setMovieTheatre(MovieTheatres movieTheatre) {
         this.movieTheatre = movieTheatre;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public LocalDateTime getSessionTime() {

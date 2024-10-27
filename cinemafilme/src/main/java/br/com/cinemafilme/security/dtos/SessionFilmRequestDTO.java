@@ -1,15 +1,14 @@
 package br.com.cinemafilme.security.dtos;
 
-import br.com.cinemafilme.security.entities.MovieTheatres;
-import br.com.cinemafilme.security.entities.Movies;
-
 import java.time.LocalDateTime;
 
 public class SessionFilmRequestDTO {
-    LocalDateTime sessionTime;
+    private double price;
+    private LocalDateTime sessionTime;
 
-    public SessionFilmRequestDTO(LocalDateTime sessionTime) {
+    public SessionFilmRequestDTO(LocalDateTime sessionTime, double price) {
         this.sessionTime = sessionTime;
+        this.price = price;
     }
 
     public SessionFilmRequestDTO() {
@@ -21,5 +20,13 @@ public class SessionFilmRequestDTO {
 
     public void setSessionTime(LocalDateTime sessionTime) {
         this.sessionTime = sessionTime;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

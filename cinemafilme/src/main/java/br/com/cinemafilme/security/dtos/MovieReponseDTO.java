@@ -50,6 +50,15 @@ public class MovieReponseDTO {
     public MovieReponseDTO(Integer idMovie, Integer idMovieTheatre, String title, String director, String genre, Integer year, Integer duration, MovieTheatreResponseDTO movieTheatreResponseDTO) {
     }
 
+    public MovieReponseDTO(String title, String director, String genre, Integer year, Integer duration, Integer idMovieTheatre, String nameMovieTheatre) {
+        this.title = title;
+        this.director = director;
+        this.genre = genre;
+        this.year = year;
+        this.duration = duration;
+        this.movieTheatreId = idMovieTheatre;
+    }
+
 
     public Integer getId() {
         return id;

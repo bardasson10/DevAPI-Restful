@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -55,6 +54,11 @@ public class MovieTheatres {
 
     }
 
+    public MovieTheatres(Integer id, String nameTheatre) {
+        this.id = id;
+        this.nameTheatre = nameTheatre;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -63,11 +67,11 @@ public class MovieTheatres {
         this.id = id;
     }
 
-    public String getName_theatre() {
+    public String getNametheatre() {
         return nameTheatre;
     }
 
-    public void setName_theatre(String nameTheatre) {
+    public void setNametheatre(String nameTheatre) {
         this.nameTheatre = nameTheatre;
     }
 

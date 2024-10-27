@@ -17,7 +17,7 @@ public class MovieTheatreResponseDTO {
     // Construtor que aceita a entidade MovieTheatres
 
     public MovieTheatreResponseDTO(MovieTheatres movieTheatre) {
-        this.name = movieTheatre.getName_theatre();
+        this.name = movieTheatre.getNametheatre();
         this.phone = movieTheatre.getPhone();
         this.email = movieTheatre.getEmail();
 
