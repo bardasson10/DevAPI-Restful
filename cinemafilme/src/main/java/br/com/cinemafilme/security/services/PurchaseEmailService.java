@@ -18,32 +18,6 @@ public class PurchaseEmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Value("${email}")
-    private String emailFrom;
-
-    @Value("${spring.mail.host}")
-    private String emailServerHost;
-
-    @Value("${spring.mail.port}")
-    private Integer emailServerPort;
-
-    @Value("${spring.mail.password}")
-    private String emailPassword;
-
-    public JavaMailSender javaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setUsername(emailFrom);
-        mailSender.setHost(emailServerHost);
-        mailSender.setPort(emailServerPort);
-        mailSender.setPassword(emailPassword);
-
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-
-        return mailSender;
-
-    }
 
     public String purchaseEmailSender(String email, String pedido, double produtoPreco, Integer produtoQuantidade, double totalPrice, PurchaseStatusEnum status) {
         LocalDateTime dateTime = LocalDateTime.now();
